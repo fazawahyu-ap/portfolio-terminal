@@ -12,7 +12,7 @@ export const COMMAND_LIST = [
 export type CommandName = (typeof COMMAND_LIST)[number];
 
 export const BIO = 
-  "Nama saya Faza Wahyu Adi Putra. Saya adalah mahasiswa D3 Teknik Informatika di Universitas Dian Nuswantoro. Saya memiliki fokus keahlian ganda pada Web Development (Front-End & Back-End) serta pemeliharaan Infrastruktur Jaringan.";
+  "Nama saya Faza Wahyu Adi Putra. Saya adalah mahasiswa Aktif Teknik Informatika. Memiliki 9 bulan Pengalaman Kerja di PT. Putra Mulia Telecommunication (Jakarta Selatan) dalam divisi Preventive Maintenance Tower Provider & Pemeliharaan Infrastruktur Jaringan.";
 
 export const PROJECTS = [
   {
