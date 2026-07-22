@@ -26,6 +26,7 @@ interface HistoryLine {
 interface TerminalWindowProps {
   onClose: () => void;
   onMinimize: () => void;
+  onMaximize?: () => void; // Prop baru untuk tombol hijau
   isMinimized: boolean;
   isExpanded: boolean;
 }
@@ -365,7 +366,7 @@ function VercelOutput() {
 
 // --- [ KOMPONEN UTAMA TERMINAL ] ---
 
-export default function TerminalWindow({ onClose, onMinimize, isMinimized, isExpanded }: TerminalWindowProps) {
+export default function TerminalWindow({ onClose, onMinimize, onMaximize, isMinimized, isExpanded }: TerminalWindowProps) {
   const [history, setHistory] = useState<HistoryLine[]>([
     { id: 0, type: "output", content: WELCOME_MESSAGE },
   ]);
@@ -373,7 +374,6 @@ export default function TerminalWindow({ onClose, onMinimize, isMinimized, isExp
   const [commandLog, setCommandLog] = useState<string[]>([]);
   const [historyPointer, setHistoryPointer] = useState<number | null>(null);
   
-  // STATE BARU UNTUK MELACAK LOKASI SAAT INI
   const [activeLocation, setActiveLocation] = useState<string>("~");
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -413,7 +413,6 @@ export default function TerminalWindow({ onClose, onMinimize, isMinimized, isExp
     const trimmed = raw.trim();
     const command = trimmed.toLowerCase();
     
-    // Simpan path saat perintah ini dieksekusi untuk history
     const currentPromptPath = activeLocation; 
 
     pushLine({
@@ -451,7 +450,6 @@ export default function TerminalWindow({ onClose, onMinimize, isMinimized, isExp
         window.open('/cv.pdf', '_blank');
         break;
 
-      // API Commands dengan Update Location
       case "network-scan": 
         output = <NetworkScanOutput />; 
         setActiveLocation("~/network-scan"); 
@@ -543,7 +541,6 @@ export default function TerminalWindow({ onClose, onMinimize, isMinimized, isExp
     }
   };
   
-  // Fungsi untuk kembali ke home
   const handleReturnToHome = () => {
     setActiveLocation("~");
     setHistory([{ id: idCounter.current++, type: "output", content: WELCOME_MESSAGE }]);
@@ -552,16 +549,22 @@ export default function TerminalWindow({ onClose, onMinimize, isMinimized, isExp
 
   return (
     <div
-      className={`w-full transition-all duration-500 ease-in-out overflow-hidden flex flex-col bg-[#1e1e1e]/95 backdrop-blur-xl border border-white/10 shadow-2xl rounded-xl ${
-        isExpanded ? "max-w-5xl" : "max-w-3xl"
-      } ${isMinimized ? "h-10 min-h-[40px]" : "h-[520px] max-h-[75vh]"}`}
+      className={`transition duration-500 ease-in-out origin-top-left overflow-hidden flex flex-col bg-[#1e1e1e]/95 backdrop-blur-xl border border-white/10 shadow-2xl rounded-xl ${
+        isMinimized 
+          ? "opacity-0 scale-[0.2] -translate-y-[45vh] -translate-x-[35vw] pointer-events-none absolute resize-none" 
+          : "opacity-100 scale-100 translate-y-0 translate-x-0 relative"
+      } ${
+        isExpanded 
+          ? "fixed inset-4 md:inset-10 z-[100] !max-w-none !w-auto !h-auto resize-none" 
+          : "w-[90vw] md:w-[768px] min-w-[320px] h-[520px] min-h-[300px] max-h-[85vh] resize"
+      }`}
     >
       {/* Title bar */}
       <div className="flex items-center h-10 px-4 bg-[#2b2b2b] border-b border-black/40 shrink-0 select-none cursor-grab active:cursor-grabbing">
         <div className="flex items-center gap-2" onPointerDown={(e) => e.stopPropagation()}>
           <button onClick={onClose} className="w-3 h-3 rounded-full bg-[#ff5f57] border border-black/10 hover:brightness-110 active:brightness-90 transition-all"></button>
           <button onClick={onMinimize} className="w-3 h-3 rounded-full bg-[#febc2e] border border-black/10 hover:brightness-110 active:brightness-90 transition-all"></button>
-          <button className="w-3 h-3 rounded-full bg-[#28c840] border border-black/10 opacity-50 cursor-default"></button>
+          <button onClick={onMaximize} className="w-3 h-3 rounded-full bg-[#28c840] border border-black/10 hover:brightness-110 active:brightness-90 transition-all"></button>
         </div>
         <div className="flex-1 text-center text-[13px] text-white/50 -ml-14 pointer-events-none">
           guest — terminal
@@ -601,7 +604,7 @@ export default function TerminalWindow({ onClose, onMinimize, isMinimized, isExp
         </div>
       </div>
 
-      {/* TERMINAL STATUS BAR (FITUR BARU) */}
+      {/* TERMINAL STATUS BAR */}
       {!isMinimized && (
         <div className="flex items-center h-8 px-4 bg-[#2b2b2b]/80 border-t border-black/40 shrink-0 text-[11px] font-mono text-white/50 justify-between">
           <div className="flex gap-4">
