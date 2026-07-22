@@ -83,7 +83,7 @@ export default function ProfileWindow({ onClose, onMinimize, onMaximize, isMinim
 
         <div className="w-full mt-auto">
            <div className="border-t border-white/10 pt-4">
-             <p className="text-white/50 mb-2">Network Connections:</p>
+             <p className="text-white/50 mb-2">Contact :</p>
              <div className={`space-y-2 ${isExpanded ? 'grid grid-cols-2 gap-4 space-y-0' : ''}`}>
                {SOCIALS.map((social) => (
                  <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between group/link hover:bg-white/5 p-2 rounded transition-colors">

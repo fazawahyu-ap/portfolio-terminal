@@ -7,6 +7,7 @@ import TerminalWindow from "@/components/TerminalWindow";
 import ProfileWindow from "@/components/ProfileWindow";
 import AlertDialog from "@/components/AlertDialog";
 import TickerBar from "@/components/TickerBar";
+import MusicPlayer from "@/components/MusicPlayer"; // <-- Import MusicPlayer ditambahkan
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -80,7 +81,7 @@ export default function Desktop() {
             drag
             dragConstraints={constraintsRef}
             dragMomentum={false}
-            onPointerDownCapture={() => setActiveWindow("profile")} /* Ubah ke onPointerDownCapture */
+            onPointerDownCapture={() => setActiveWindow("profile")} 
             style={{ zIndex: activeWindow === "profile" ? 30 : 20 }}
             className={`absolute md:relative cursor-auto transition-all duration-500 ease-in-out flex justify-center ${isTerminalOpen ? 'w-full max-w-sm shrink-0' : 'w-full max-w-2xl'}`}
           >
@@ -98,7 +99,7 @@ export default function Desktop() {
             drag
             dragConstraints={constraintsRef}
             dragMomentum={false}
-            onPointerDownCapture={() => setActiveWindow("terminal")} /* Ubah ke onPointerDownCapture */
+            onPointerDownCapture={() => setActiveWindow("terminal")} 
             style={{ zIndex: activeWindow === "terminal" ? 30 : 20 }}
             className={`absolute md:relative cursor-auto transition-all duration-500 ease-in-out flex justify-center ${isProfileOpen ? 'w-full max-w-3xl flex-1' : 'w-full max-w-5xl'}`}
           >
@@ -122,6 +123,10 @@ export default function Desktop() {
       </div>
 
       {showAlert && <AlertDialog onAcknowledge={() => setAlertDismissed(true)} />}
+      
+      {/* Widget Musik Mengambang di Pojok Kanan Atas */}
+      <MusicPlayer />
+
       <TickerBar />
     </main>
   );

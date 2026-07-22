@@ -12,7 +12,7 @@ export const COMMAND_LIST = [
 export type CommandName = (typeof COMMAND_LIST)[number];
 
 export const BIO = 
-  "Nama saya Faza Wahyu Adi Putra. Saya adalah mahasiswa Aktif Teknik Informatika. Memiliki 9 bulan Pengalaman Kerja di PT. Putra Mulia Telecommunication (Jakarta Selatan) dalam divisi Preventive Maintenance Tower Provider & Pemeliharaan Infrastruktur Jaringan.";
+  "Saya Faza Wahyu Adi Putra. Mahasiswa Aktif Teknik Informatika. Memiliki Pengalaman Kerja di PT. Putra Mulia Telecommunication dalam divisi Preventive Maintenance Tower Provider & Pemeliharaan Infrastruktur Jaringan.";
 
 export const PROJECTS = [
   {
@@ -58,10 +58,11 @@ export const CERTIFICATIONS = [
 ];
 
 export const SOCIALS = [
+  { label: "LinkedIn", value: "faza-wap", url: "https://www.linkedin.com/in/faza-wap/" },
+  { label: "GitHub", value: "fazawahyu-ap", url: "https://github.com/fazawahyu-ap" },
   { label: "Email", value: "fazawahyu10@gmail.com", url: "mailto:fazawahyu10@gmail.com" },
-  { label: "Instagram", value: "@faza_wap", url: "https://www.instagram.com/faza_wap" },
-  { label: "LinkedIn", value: "linkedin.com/in/faza-wap/", url: "https://www.linkedin.com/in/faza-wap/" },
-  { label: "GitHub", value: "github.com/fazawahyu-ap", url: "https://github.com/fazawahyu-ap" },
+  { label: "Certifications", value: "See All Certifications", url: "https://drive.google.com/drive/folders/1Zah1VfcO4CHtFoAsclDLXG5zsPInj3LA" },
+
 ];
 
 export const MEDIA = [

@@ -11,7 +11,7 @@ import {
   COMMAND_LIST,
   PROJECTS,
   SOCIALS,
-  MEDIA,
+  MEDIA, // (Tetap di-import agar tidak error, meskipun sudah tidak dipakai di renderMedia)
   BIO,
   EXPERIENCE,
   CERTIFICATIONS,
@@ -26,7 +26,7 @@ interface HistoryLine {
 interface TerminalWindowProps {
   onClose: () => void;
   onMinimize: () => void;
-  onMaximize?: () => void; // Prop baru untuk tombol hijau
+  onMaximize?: () => void;
   isMinimized: boolean;
   isExpanded: boolean;
 }
@@ -51,24 +51,29 @@ function renderHelp(): ReactNode {
     <div className="space-y-1">
       <p className="text-white/70">Available commands:</p>
       <ul className="pl-4">
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">help</span> <span className="text-white/60">— show this list</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">whoami</span> <span className="text-white/60">— short bio</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">projects</span> <span className="text-white/60">— recent work</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">experience</span> <span className="text-white/60">— work experience</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">certifications</span><span className="text-white/60">— achievements</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">socials</span> <span className="text-white/60">— contact links</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">media</span> <span className="text-white/60">— currently on Spotify/Letterboxd</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">cv</span> <span className="text-white/60">— download my resume/CV</span></li>
+        {/* PERBAIKAN BUG: w-24 diubah menjadi w-36 agar kata "certifications" tidak menabrak */}
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">help</span> <span className="text-white/60">— show this list</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">whoami</span> <span className="text-white/60">— short bio</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">projects</span> <span className="text-white/60">— recent work</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">experience</span> <span className="text-white/60">— work experience</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">certifications</span><span className="text-white/60">— achievements & files</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">socials</span> <span className="text-white/60">— contact links</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">media</span> <span className="text-white/60">— photo gallery (Work & Org)</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">cv</span> <span className="text-white/60">— download my resume/CV</span></li>
         
         <li className="mt-3 mb-1 text-white/40 text-[11px] uppercase tracking-wider border-b border-white/10 pb-1 w-max">--- Live API Integrations ---</li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">network-scan</span> <span className="text-white/60">— run IP geolocation scan</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">github</span> <span className="text-white/60">— fetch latest public repos</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">weather</span> <span className="text-white/60">— meteorological data</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">crypto</span> <span className="text-white/60">— live cryptocurrency market prices</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">joke</span> <span className="text-white/60">— print a random programming joke</span></li>
-        <li><span className="text-emerald-400 font-semibold w-24 inline-block">vercel</span> <span className="text-white/60">— live deployment status</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">network-scan</span> <span className="text-white/60">— run IP geolocation scan</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">github</span> <span className="text-white/60">— fetch latest public repos</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">weather</span> <span className="text-white/60">— meteorological data</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">crypto</span> <span className="text-white/60">— live cryptocurrency market prices</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">joke</span> <span className="text-white/60">— print a random programming joke</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">vercel</span> <span className="text-white/60">— live deployment status</span></li>
+
+        <li className="mt-3 mb-1 text-white/40 text-[11px] uppercase tracking-wider border-b border-white/10 pb-1 w-max">--- Audio Subsystem ---</li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">music play</span> <span className="text-white/60">— play/pause backgound music</span></li>
+        <li><span className="text-emerald-400 font-semibold w-36 inline-block">music next</span> <span className="text-white/60">— skip to next track</span></li>
         
-        <li className="mt-2"><span className="text-emerald-400 font-semibold w-24 inline-block">clear</span> <span className="text-white/60">— clear screen</span></li>
+        <li className="mt-2"><span className="text-emerald-400 font-semibold w-36 inline-block">clear</span> <span className="text-white/60">— clear screen</span></li>
       </ul>
     </div>
   );
@@ -106,15 +111,24 @@ function renderExperience(): ReactNode {
     </div>
   );
 }
+
+// PERBAIKAN: Menambahkan link Google Drive di fungsi Certifications
 function renderCertifications(): ReactNode {
   return (
-    <div className="space-y-1">
+    <div className="space-y-3">
+      <div className="flex items-center gap-2 mb-2 p-2 bg-blue-500/10 border border-blue-500/20 rounded inline-block">
+        <span className="text-blue-400">🔗</span>
+        <a href="https://drive.google.com/drive/folders/1Zah1VfcO4CHtFoAsclDLXG5zsPInj3LA?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          [Click here to view original certificates in Google Drive]
+        </a>
+      </div>
       <ul className="list-disc pl-4 text-white/90 marker:text-emerald-400">
         {CERTIFICATIONS.map((cert, index) => <li key={index}>{cert}</li>)}
       </ul>
     </div>
   );
 }
+
 function renderSocials(): ReactNode {
   return (
     <div className="space-y-1">
@@ -127,15 +141,51 @@ function renderSocials(): ReactNode {
     </div>
   );
 }
+
+// PERBAIKAN: Galeri foto dengan ukuran seragam (object-cover) dan dipisah kategorinya
 function renderMedia(): ReactNode {
+  const workImages = ["/work1.jpg", "/work2.jpg", "/work3.png", "/work4.png"];
+  const orgImages = ["/org1.jpg", "/org2.jpg", "/org3.jpg", "/org4.png", "/org5.png", "/org6.png"];
+
   return (
-    <div className="space-y-1">
-      {MEDIA.map((item) => (
-        <p key={item.label}>
-          <span className="text-emerald-400 font-semibold w-24 inline-block">{item.label}:</span>{" "}
-          <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">{item.value}</a>
-        </p>
-      ))}
+    <div className="space-y-6">
+      <p className="text-white/50 mb-2 border-b border-white/10 pb-1">Visual Media & Documentation:</p>
+      
+      {/* Kategori WORK */}
+      <div className="space-y-3">
+        <span className="text-emerald-400 font-semibold flex items-center gap-2">
+          📁 Work Experience
+        </span>
+        <div className="flex flex-wrap gap-3">
+          {workImages.map((src, index) => (
+            <img 
+              key={index} 
+              src={src} 
+              alt={`Work documentation ${index + 1}`} 
+              // w-32 h-24 mengatur ukuran kotak, object-cover memastikan foto tidak gepeng
+              className="w-32 h-24 object-cover rounded-lg border border-white/20 hover:scale-110 hover:border-emerald-400 transition-all cursor-pointer shadow-lg" 
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Kategori ORGANIZATION */}
+      <div className="space-y-3">
+        <span className="text-emerald-400 font-semibold flex items-center gap-2">
+          📁 Organization & Campus
+        </span>
+        <div className="flex flex-wrap gap-3">
+          {orgImages.map((src, index) => (
+            <img 
+              key={index} 
+              src={src} 
+              alt={`Organization documentation ${index + 1}`} 
+              className="w-32 h-24 object-cover rounded-lg border border-white/20 hover:scale-110 hover:border-emerald-400 transition-all cursor-pointer shadow-lg" 
+            />
+          ))}
+        </div>
+      </div>
+      
     </div>
   );
 }
@@ -388,7 +438,10 @@ export default function TerminalWindow({ onClose, onMinimize, onMaximize, isMini
     "weather", 
     "crypto", 
     "joke",
-    "vercel"
+    "vercel",
+    "music play",
+    "music next", 
+    "music mute"
   ];
 
   useEffect(() => {
@@ -444,10 +497,25 @@ export default function TerminalWindow({ onClose, onMinimize, onMaximize, isMini
       case "certifications": output = renderCertifications(); break;
       case "socials": output = renderSocials(); break;
       case "media": output = renderMedia(); break;
+
+      case "music":
+      case "music play": 
+        window.dispatchEvent(new CustomEvent("terminal-music", { detail: { action: "toggle" } }));
+        output = <div className="text-[#28c840] animate-pulse">Menghubungkan ke server audio... [Play/Pause]</div>;
+        break;
+      case "music next": 
+        window.dispatchEvent(new CustomEvent("terminal-music", { detail: { action: "next" } }));
+        output = <div className="text-blue-400">Memuat trek berikutnya...</div>;
+        break;
+      case "music mute": 
+        window.dispatchEvent(new CustomEvent("terminal-music", { detail: { action: "mute" } }));
+        output = <div className="text-[#febc2e]">Mengalihkan status sistem audio...</div>;
+        break;
       
+      // PERBAIKAN: Perubahan path CV sesuai permintaan
       case "cv": 
-        output = <div className="text-blue-400 font-semibold animate-pulse">Initiating download: cv.pdf...</div>;
-        window.open('/cv.pdf', '_blank');
+        output = <div className="text-blue-400 font-semibold animate-pulse">Initiating download: CV_Faza_Wahyu_Adi_Putra.pdf...</div>;
+        window.open('/CV_Faza_Wahyu_Adi_Putra.pdf', '_blank');
         break;
 
       case "network-scan": 
