@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background Terminal -->
+  <rect width="512" height="512" rx="112" fill="#1e1e1e" stroke="#34d399" stroke-width="8" stroke-opacity="0.2"/>
+  
+  <!-- Tombol macOS -->
+  <circle cx="80" cy="80" r="16" fill="#ff5f57" />
+  <circle cx="132" cy="80" r="16" fill="#febc2e" />
+  <circle cx="184" cy="80" r="16" fill="#28c840" />
+
+  <!-- Huruf 'F' -->
+  <rect x="150" y="150" width="56" height="212" fill="#34d399" />
+  <rect x="150" y="150" width="168" height="56" fill="#34d399" />
+  <rect x="150" y="242" width="128" height="56" fill="#34d399" />
+
+  <!-- Kursor Terminal '_' -->
+  <rect x="228" y="306" width="112" height="56" fill="#34d399" />
+</svg>

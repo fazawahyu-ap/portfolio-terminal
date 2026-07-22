@@ -58,7 +58,7 @@ export default function MenuBar({ onReset, onToggleTerminal, onToggleProfile }: 
           onClick={onReset}
           className="font-semibold text-emerald-400 px-2 py-0.5 rounded hover:bg-white/10 active:bg-white/20 transition-colors"
         >
-          Faza_OS
+          Faza_
         </button>
         <button 
           onClick={onToggleTerminal}
